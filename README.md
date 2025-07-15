@@ -32,16 +32,39 @@ Store, swap and stake AVAX plus bridged BTC, ETH, USDC, USDT and any ARC‑20/ER
 
 ---
 
-## Desktop downloads
-Pre‑built installers are published on the **[Releases](../../releases)** page for every tagged version.
+## Desktop Downloads
 
-| OS            | File name                              | Notes                             |
-| ------------- | -------------------------------------- | --------------------------------- |
-| **Windows**   | `avax-wallet‑Setup‑<version>.exe`      | 64‑bit installer, code‑signed     |
-| **macOS**     | `avax-wallet‑<version>.dmg`            | Universal build (Apple & Intel)   |
-| **Linux**     | `avax-wallet‑<version>.AppImage`       | Works on most distros             |
+### 1 · Choose your OS
+| OS | Minimum version | File |
+| --- | --- | --- |
+| **Windows 10/11 (x64)** | — | `avax-wallet‑<version>.exe` |
+| **macOS 12+ (Apple & Intel)** | Monterey | `avax-wallet‑<version>.dmg` |
+| **Linux** (glibc ≥ 2.31) | Ubuntu 20.04+, Fedora 35+, Arch | `avax-wallet‑<version>.AppImage` |
 
-Each archive ships with `SHA256SUMS` and a detached PGP signature – **always verify before running**.
+> All installers live on the **[GitHub Releases](../../releases)** page.
+
+### 2 · Verify integrity _(highly recommended)_
+```bash
+# 2a. Download checksums & sigs
+curl -LO https://github.com/avax-lab/avax-wallet/releases/download/v<version>/SHA256SUMS
+curl -LO https://github.com/avax-lab/avax-wallet/releases/download/v<version>/SHA256SUMS.asc
+
+# 2b. Verify signature
+gpg --verify SHA256SUMS.asc SHA256SUMS
+
+# 2c. Match the checksum
+sha256sum avax-wallet-<version>.* | grep $(grep <filename> SHA256SUMS)
+```
+
+### 3 · Install
+| OS | Action |
+| --- | --- |
+| Windows | Double‑click the `.exe`, follow the wizard |
+| macOS | Open the `.dmg`, drag **AVAX Wallet** to **Applications** |
+| Linux | `chmod +x` the `.AppImage`, then run it |
+
+### 4 · First run
+The wallet checks for updates at startup and auto‑prompts when a newer signed binary is available.
 
 ---
 
