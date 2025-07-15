@@ -80,9 +80,9 @@ yarn serve          # https://localhost:5000 with hot reload
 Default network is **mainnet**. Switch to Fuji or a local node via **Settings → Network** or set `VUE_APP_NETWORK` before `yarn serve`.
 
 ### Prerequisites
-- **Node ≥ 16**
-- **Yarn classic** (or npm ≥ 7)
-- Optional: a local [`avalanchego`](https://github.com/ava-labs/avalanchego) node for offline testing
+-- **Node ≥ 16**
+-- **Yarn classic** (or npm ≥ 7)
+-- Optional: a local [`avalanchego`](https://github.com/ava-labs/avalanchego) node for offline testing
 
 ---
 
