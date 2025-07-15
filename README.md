@@ -1,111 +1,120 @@
-# Avalanche (AVAX) Wallet
+# AVAX Wallet
 
-This is the frontend Vue.js application for the Avalanche (AVAX) Wallet.
+**Quick, self‑custodial wallet for the Avalanche ecosystem**  
+Store, swap and stake AVAX plus bridged BTC, ETH, USDC, USDT and any ARC‑20/ERC‑20 token on Avalanche C‑Chain.
 
-## Prerequisites
+![banner](public/og‑banner.png)
 
--   Yarn (https://classic.yarnpkg.com/en/docs/install/)
--   Recent version of npm (7.4.0)
--   Node v16
--   Gecko, Avalanche client in Golang (https://github.com/ava-labs/avalanchego)
+> **Prefer a native app?** Scroll to **[Desktop downloads](#desktop-downloads)** or use the web/PWA build at `wallet.avax.network`.
 
-## Installation
+---
 
-1. Clone the repo `git clone https://github.com/ava-labs/avalanche-wallet.git`
-2. Go to root of the project `cd avalanche-wallet`
-3. Install javascript dependencies with `yarn install`.
+## Table of contents
+- [Key features](#key-features)
+- [Desktop downloads](#desktop-downloads)
+- [Getting started](#getting-started)
+- [Development workflow](#development-workflow)
+- [Building for production](#building-for-production)
+- [Running tests](#running-tests)
+- [Security disclosure](#security-disclosure)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Running The Project
+---
 
-In order for the wallet to work, it needs the Avalanche network to operate on. By default the wallet will connect to the Avalanche mainnet.
+## Key features
+* **Cross‑platform:** Runs in any modern browser, as a PWA you can “install”, or as native Windows/macOS/Linux binaries.  
+* **HD wallets & hardware support:** BIP‑39/BIP‑44 seed phrases, Ledger and Trezor connectivity.  
+* **Subnet & token aware:** Automatic discovery of X / P / C chains, Subnets, NFTs and custom ARC‑20/ERC‑20 tokens.  
+* **One‑click staking:** Delegate or validate AVAX with automatic reward tracking.  
+* **Built‑in DEX & bridge:** Aggregated swaps and Core bridge for BTC ↔ AVAX.  
+* **Open source & auditable:** TypeScript + Vue 2, powered by `@avalabs/avalanche-wallet-sdk`.  
 
-1. If you want to connect to a local network, make sure you have installed and able to run a AvlaancheGo node properly.
-2. Run the project with hot reloading `yarn serve`
+---
 
-When you go to the website on your browser, you might get a warning saying
-"Site is not secure". This is because we are signing our own SSL Certificates. Please ignore and continue to the website.
+## Desktop downloads
+Pre‑built installers are published on the **[Releases](../../releases)** page for every tagged version.
 
-## Deployment
+| OS            | File name                              | Notes                             |
+| ------------- | -------------------------------------- | --------------------------------- |
+| **Windows**   | `avax-wallet‑Setup‑<version>.exe`      | 64‑bit installer, code‑signed     |
+| **macOS**     | `avax-wallet‑<version>.dmg`            | Universal build (Apple & Intel)   |
+| **Linux**     | `avax-wallet‑<version>.AppImage`       | Works on most distros             |
 
-1.  Compile and minify to have a production ready application with `yarn build`.
-2.  Serve from the `/dist` directory.
+Each archive ships with `SHA256SUMS` and a detached PGP signature – **always verify before running**.
 
-## Changing the Network
+---
 
-By default the wallet will connect to the Avalanche tmainnet. You can change to another network by clicking the button labeled `TestNet` on the navigation bar and selecting another network, or add a custom network.
+## Getting started
 
-## Explorer API
-
-A valid explorer API is required to correctly display balances for Mnemonic and Ledger type wallets.
-The wallet uses the Avalanche Explorer API to display wallet transaction history.
-
-WARNING: This history might be out of order and incomplete.
-
-## Browser Support
-
-We suggest using Google Chrome to view the Avalanche Wallet website.
-
-### Firefox and https
-
-Firefox does not allow https requests to localhost. But the Avalanche Wallet uses https by default, so we will need to change this to http. Make this switch by editing the `vue.config.js` file in the root directory and change
-
-```
-devServer: {
-    https: true
-},
-```
-
-to
-
-```
-devServer: {
-    https: false
-},
+```bash
+git clone https://github.com/avax-lab/avax-wallet.git
+cd avax-wallet
+yarn install        # or npm ci
+yarn serve          # https://localhost:5000 with hot reload
 ```
 
-and run `yarn serve` to reflect the change.
+Default network is **mainnet**. Switch to Fuji or a local node via **Settings → Network** or set `VUE_APP_NETWORK` before `yarn serve`.
 
-# Accounts
+### Prerequisites
+- **Node ≥ 16**
+- **Yarn classic** (or npm ≥ 7)
+- Optional: a local [`avalanchego`](https://github.com/ava-labs/avalanchego) node for offline testing
 
-The wallet can encrypt your private keys into a secure file encrypted by a password.
+---
 
-```json
-{
-    "accounts": iUserAccountEncrypted[]
-}
+## Development workflow
+
+| Command          | Purpose                              |
+| ---------------- | ------------------------------------ |
+| `yarn serve`     | Dev server with hot reload (HTTPS)   |
+| `yarn lint`      | ESLint + TypeScript checks           |
+| `yarn test`      | Jest unit suite                      |
+| `yarn cypress`   | Headless end‑to‑end tests            |
+| `yarn format`    | Prettier auto‑format                 |
+
+> **Firefox tip:** The dev server uses self‑signed HTTPS. Launch with `USE_HTTP=1 yarn serve` or import the certificate if Firefox blocks `localhost` SSL.
+
+---
+
+## Building for production
+
+```bash
+# Web/PWA build (static files in /dist)
+yarn build
+
+# Native desktop builds (Electron, requires platform‑specific signing)
+yarn electron:build
 ```
 
-# Language Setting
+Artifacts appear in `dist_electron/` and are uploaded automatically by CI when you push a tag like **v1.2.3**.
 
-Saved into local storage as a 2 letter code.
+---
 
+## Running tests
+
+```bash
+yarn test            # Jest unit tests
+yarn cypress         # Headless e2e
+yarn cypress:open    # Interactive e2e runner
 ```
-"lang": "en"
-```
 
-# Dependencies
+---
 
-##### Avalanche Node (https://github.com/ava-labs/avalanchego)
+## Security disclosure
+Please **do not file GitHub issues for vulnerabilities**.  
+Email `security@avax‑lab.dev` or use the public key in `SECURITY.md`. Responsible‑disclosure credits are added to the changelog.
 
-To get utxos and to send transactions.
+---
 
-#### Explorer API Node (https://github.com/ava-labs/ortelius)
+## Contributing
+1. Fork and create a feature branch.  
+2. Run `yarn lint && yarn test` before opening a PR.  
+3. Sign commits with the Developer Certificate of Origin (`git commit -s`).  
 
-To check if an address was used before, and to get activity history.
+See **`CONTRIBUTING.md`** for detailed guidelines.
 
-# Default Connections
+---
 
-The wallet needs to connect to an Avalanche node, and an explorer node to operate properly.
-
-By default, there are two network options to connect to: `Mainnet` and `Fuji`.
-
-##### Mainnet
-
--   Avalanche API: `https://api.avax.network:443`
--   Explorer API: `https://explorerapi.avax.network`
-
-##### Fuji (Testnet)
-
--   Avalanche API: `https://api.avax-test.network:443`
--   Explorer API: `https://explorerapi.avax-test.network`
-
+## License
+BSD 3‑Clause – see [`LICENSE.md`](LICENSE.md) for the full text.
