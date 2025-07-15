@@ -16,7 +16,8 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [16.x]
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -29,8 +30,7 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --ignore-engines
 
       - name: Build
         run: yarn build
-
