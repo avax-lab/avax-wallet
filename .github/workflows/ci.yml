@@ -2,26 +2,33 @@ name: CI
 
 on:
   push:
-  pull_request:
-
-env:
-  CI: true
+    branches: [ main ]
 
 jobs:
-  Build:
+  build:
     runs-on: ubuntu-latest
-    env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    strategy:
-      matrix:
-        node-version: [16.x]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          cache: yarn
-          node-version: ${{ matrix.node-version }}
-      - name: Create .npmrc
-        run: echo '//registry.npmjs.org/:_authToken= ${{ secrets.NPM_TOKEN }}' >> .npmrc
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
+          node-version: 18
+          cache: 'yarn'
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/yarn
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
