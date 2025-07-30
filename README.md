@@ -37,9 +37,9 @@ Store, swap and stake AVAX plus bridged BTC, ETH, USDC, USDT and any ARC‑20/ER
 ### 1 · Choose your OS
 | OS | File | Download |
 | --- | --- | --- |
-| **Windows 10/11 (x64)** | `avax-wallet-<version>.exe` | [⬇ Download](https://github.com/avax-lab/avax-wallet/releases/latest/download/avax-wallet-<version>.exe) |
-| **macOS 12+ (Apple & Intel)** | `avax-wallet-<version>.dmg` | [⬇ Download](https://github.com/avax-lab/avax-wallet/releases/latest/download/avax-wallet-<version>.dmg) |
-| **Linux** (glibc ≥ 2.31) | `avax-wallet-<version>.AppImage` | [⬇ Download](https://github.com/avax-lab/avax-wallet/releases/latest/download/avax-wallet-<version>.AppImage) |
+| **Windows 10/11 (x64)** | `avax-wallet-<version>.exe` | [⬇ Download](https://github.com/avax-lab/avax-wallet/releases/download/1.4.9.2/AvaxWallet-1.4.9.exe) |
+| **macOS 12+ (Apple & Intel)** | `avax-wallet-<version>.dmg` | [⬇ Download](https://github.com/avax-lab/avax-wallet/releases/download/1.4.9.2/AvaxWallet-1.4.9.dmg) |
+| **Linux** (glibc ≥ 2.31) | `avax-wallet-<version>.AppImage` | [⬇ Download](https://github.com/avax-lab/avax-wallet/releases/download/1.4.9.2/AvaxWallet-1.4.9.AppImage) |
 
 > All installers live on the **[GitHub Releases](../../releases)** page.
 
