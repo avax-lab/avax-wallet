@@ -1,9 +1,10 @@
 ## #AVAX Wallet
 
-**Quick, self‑custodial wallet for the Avalanche ecosystem**  
 Store, swap and stake AVAX plus bridged BTC, ETH, USDC, USDT and any ARC‑20/ERC‑20 token on Avalanche C‑Chain.
 
-![banner](public/og‑banner.jpg)
+<img width="1440" height="588" alt="image" src="https://github.com/user-attachments/assets/e3129693-a15d-463e-9697-1818f186e8f5" />
+
+
 
 > **Prefer a native app?** Scroll to **[Desktop downloads](#desktop-downloads)** or use the web/PWA build at `wallet.avax.network`.
 
